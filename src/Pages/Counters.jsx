@@ -10,6 +10,7 @@ const counters = [
 export default class Counters extends Component {
   state = {
     counters,
+    total: 0,
   };
 
   onIncrement = (id, step = 1) => {
@@ -50,6 +51,15 @@ export default class Counters extends Component {
       });
     }
   };
+
+  // componentDidUpdate() {
+  //   const newTotal = this.counters.reduce(() => {})
+  //   this.setState((prevState)=>{
+  //     return {
+
+  //     }
+  //   })
+  // }
 
   render() {
     return (
