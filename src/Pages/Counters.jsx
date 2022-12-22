@@ -25,6 +25,22 @@ export default class Counters extends Component {
     });
   };
 
+  onDecrement = (id, step = 1) => {
+    if (true) {
+      console.log(this.state.counters[id]);
+      this.setState((prevState) => {
+        return {
+          counters: prevState.counters.map((item) => {
+            if (item.id === id) {
+              return { ...item, count: item.count - step };
+            }
+            return item;
+          }),
+        };
+      });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -34,6 +50,7 @@ export default class Counters extends Component {
               key={item.id}
               {...item}
               onIncrement={this.onIncrement}
+              onDecrement={this.onDecrement}
               step={item.steps}
             />
           );
