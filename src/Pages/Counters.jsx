@@ -26,13 +26,23 @@ export default class Counters extends Component {
   };
 
   onDecrement = (id, step = 1) => {
-    if (true) {
-      console.log(this.state.counters[id]);
+    if (this.state.counters[id - 1].count > step) {
       this.setState((prevState) => {
         return {
           counters: prevState.counters.map((item) => {
             if (item.id === id) {
               return { ...item, count: item.count - step };
+            }
+            return item;
+          }),
+        };
+      });
+    } else {
+      this.setState((prevState) => {
+        return {
+          counters: prevState.counters.map((item) => {
+            if (item.id === id) {
+              return { ...item, count: 0 };
             }
             return item;
           }),
