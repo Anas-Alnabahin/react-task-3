@@ -52,14 +52,18 @@ export default class Counters extends Component {
     }
   };
 
-  // componentDidUpdate() {
-  //   const newTotal = this.counters.reduce(() => {})
-  //   this.setState((prevState)=>{
-  //     return {
-
-  //     }
-  //   })
-  // }
+  componentDidUpdate() {
+    this.setState((prevState) => {
+      const newTotal = prevState.counters.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.count,
+        0
+      );
+      if (this.state.total !== newTotal)
+        return {
+          total: newTotal,
+        };
+    });
+  }
 
   render() {
     return (
@@ -76,6 +80,7 @@ export default class Counters extends Component {
           );
           //   return <Counter key={item.id} item={item} />;
         })}
+        <h1>{this.state.total}</h1>
       </div>
     );
   }
